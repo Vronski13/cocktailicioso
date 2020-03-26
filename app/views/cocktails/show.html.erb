@@ -1,2 +1,21 @@
-<h1>Cocktails#show</h1>
-<p>Find me in app/views/cocktails/show.html.erb</p>
+<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url('<%= cl_image_path @cocktail.photo.key, height: 1200, width: 1200, crop: :fill %>');">
+  <div class="container">
+    <h1><%= @cocktail.name %></h1>
+  </div>
+</div>
+
+<ul>
+  <% @cocktail.doses.each do |d| %>
+  <li>
+    <%= d.description %> <%= d.ingredient.name %>
+    <%= link_to "Delete", dose_path(d),
+      method: :delete,
+      data: { confirm: "Are you sure?" } %>
+  </li>
+  <% end %>
+</ul>
+<div>
+<%= link_to "Add Doses", new_cocktail_dose_path(@cocktail), class: "btn btn-ghost" %>
+<%= link_to "Back", root_path, class: "btn btn-ghost" %>
+</div>
+
