@@ -15,4 +15,8 @@
 // const images = require.context('../images', true)
 // const imagePath = (name) => images(name, true)
 import 'bootstrap';
-console.log('Hello World from Webpacker')
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+AOS.init();
+console.log('Hello World from Webpacker');
+
