@@ -1,5 +1,6 @@
 class CocktailsController < ApplicationController
   before_action :find_cocktail, only: [:show]
+  skip_before_action :authenticate_user!, only: [:index]
 
   def index
     @cocktails = Cocktail.all

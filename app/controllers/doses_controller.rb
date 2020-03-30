@@ -1,5 +1,5 @@
 class DosesController < ApplicationController
-before_action :find_cocktail, only: [:create, :new]
+  before_action :find_cocktail, only: [:create, :new]
 
   def new
     @dose = Dose.new
