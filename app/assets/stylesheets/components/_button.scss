@@ -1,20 +1,12 @@
-.btn-ghost {
-  color: #ffa41b;
-  border: 2px solid #ffa41b;
+.btn-orange {
+  color: $orange;
+  border: 2px solid $orange;
   padding: 8px 24px;
   border-radius: 50px;
   transition: opacity 0.3s ease;
 }
 
-.btn-ghost:hover {
-  color: #9818d6;
-  border: 2px solid #9818d6;
-}
-
-.btn-flat {
-  color: white;
-  padding: 8px 24px;
-  border-radius: 4px;
-  background: #1EDD88;
-  transition: background 0.3s ease;
+.btn-orange:hover {
+  color: $purple;
+  border-color: $purple;
 }
