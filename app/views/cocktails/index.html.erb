@@ -3,12 +3,20 @@
     <h1>Cocktailicioso</h1>
     <p>The world's best cocktails.</p>
     <%=link_to "Mix it baby!", new_cocktail_path, class: "btn-orange"%>
-
   </div>
 </div>
 
+
 <div class="container mt-4">
-  <%= form_tag root_path, method: :get do %>
+  <h3 class="mb-4"> Delicioso's choices for today: </h3>
+  <div class="cards">
+    <% @cocktails.sample(3).each do |cocktail| %>
+      <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= cl_image_path cocktail.photo.key, height: 1200, width: 1200, crop: :fill %>');">
+        <%=link_to cocktail.name, cocktail_path(cocktail)%>
+      </div>
+    <% end %>
+  </div>
+  <%= form_tag root_path, class: "d-flex my-4", method: :get do %>
     <%= text_field_tag :query,
       params[:query],
       class: "form-control",
