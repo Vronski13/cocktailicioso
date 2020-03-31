@@ -1,12 +1,23 @@
 <div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url('<%=cl_image_path 'banner_5_szhnq9', width: 4000, height: 2700, crop: :fill %>');">
   <div class="container">
-    <h1>Create your favorite cocktail</h1>
+    <h1>Create your favourite cocktail</h1>
   </div>
 </div>
-<div class="container" style="margin-top: 30px">
-  <%= simple_form_for [@cocktail] do |f| %>
-    <%= f.input :name %>
-    <%= f.input :photo, as: :file %>
-    <%= f.submit "add cocktail", class: "btn btn-orange" %>
-  <% end %>
+<div class="container">
+  <div class="d-flex flex-wrap justify-content-between">
+    <div class="container-cocktail">
+      <h4> First, give your cocktail a name </h4>
+      <%= simple_form_for [@cocktail] do |f| %>
+        <%= f.input :name %>
+        <%= f.input :photo, as: :file %>
+        <%= f.submit "add cocktail", class: "btn-orange" %>
+      <% end %>
+    </div>
+    <div class="container-inspiration">
+      <h4> Need some inspiration? </h4>
+      <% @cocktails.each do |cocktail| %>
+        <%= cocktail.name %> |
+      <% end %>
+    </div>
+  </div>
 </div>

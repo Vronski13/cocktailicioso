@@ -14,10 +14,15 @@
 
 a {
   text-decoration: none;
-  color: white;
+  color: $orange;
 }
 
 a:hover {
   text-decoration: none;
-  color: #ffa41b;
+  color: $purple;
+}
+
+h1, h2, h3, h4, h5, h6, p {
+  font-family: Nunito;
+  color: $black;
 }
