@@ -3,7 +3,16 @@ class CocktailsController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index]
 
   def index
-    @cocktails = Cocktail.all
+    if params[:query].present?
+      @cocktails = []
+      query = "%#{params[:query]}%"
+      results = PgSearch.multisearch(query)
+      results.each do |result|
+        @cocktails << result.searchable
+      end
+    else
+      @cocktails = Cocktail.all
+    end
   end
 
   def show
@@ -32,5 +41,4 @@ private
   def cocktail_params
     params.require(:cocktail).permit(:name, :photo)
   end
-
 end
