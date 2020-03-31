@@ -28,8 +28,25 @@
       <%= simple_form_for [@cocktail, @dose] do |f| %>
         <%= f.association :ingredient, label_method: :name, value_method: :id, include_blank: false%>
         <%= f.input :description, label: "Amount and description" %>
-        <%= f.submit "add dosis", class: "btn btn-orange" %>
+        <%= f.submit "add dosis", class: "btn-orange" %>
       <% end %>
     </div>
+
+    <div class="container-reviews">
+      <h2>See what Cocktailicioso's community says about <%= @cocktail.name %> </h2>
+      <% if @cocktail.reviews.blank? %>
+        <p> Leave the first comment!</p>
+      <% else %>
+        <% @cocktail.reviews do |review| %>
+          <%= review.rating %>
+        <% end %>
+      <% end %>
+      <%= simple_form_for [@cocktail] do |f| %>
+        <%= f.association :user, label_method: :username, value_method: :id, include_blank: false%>
+
+        <%= f.submit "add review", class: "btn-orange" %>
+      <% end %>
+    </div>
+
   </div>
 </div>
