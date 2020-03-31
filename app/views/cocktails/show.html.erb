@@ -1,20 +1,35 @@
-<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url('<%= cl_image_path @cocktail.photo.key, height: 1200, width: 1200, crop: :fill %>');">
+<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url('<%= cl_image_path @cocktail.photo.key, height: 1200, width: 1200, crop: :fill, position: :center; %>');">
   <div class="container">
     <h1><%= @cocktail.name %></h1>
   </div>
 </div>
 
-<ul>
-  <% @cocktail.doses.each do |d| %>
-  <li>
-    <%= d.description %> <%= d.ingredient.name %>
-    <%= link_to "Delete", dose_path(d),
-      method: :delete,
-      data: { confirm: "Are you sure?" } %>
-  </li>
-  <% end %>
-</ul>
-<div>
-  <%= link_to "Add Doses", new_cocktail_dose_path(@cocktail), class: "btn-orange" %>
-</div>
+<div class="container">
+  <div class="d-flex flex-wrap align-items-stretch">
 
+    <div class="container-doses">
+      <h2>How to mix a <%= @cocktail.name %></h2>
+      <ul>
+        <% @cocktail.doses.each do |d| %>
+        <li>
+          <span style="color: #9818d6"><%= d.description %></span> <%= d.ingredient.name %>
+          <%= link_to dose_path(d),
+            method: :delete,
+            data: { confirm: "Are you sure?" } do %>
+            <i class="far fa-trash-alt"></i>
+          <% end %>
+        </li>
+        <% end %>
+      </ul>
+    </div>
+
+    <div class="container-doses">
+      <h2>Add incredients to your cocktail</h2>
+      <%= simple_form_for [@cocktail, @dose] do |f| %>
+        <%= f.association :ingredient, label_method: :name, value_method: :id, include_blank: false%>
+        <%= f.input :description %>
+        <%= f.submit "add dosis", class: "btn btn-orange" %>
+      <% end %>
+    </div>
+  </div>
+</div>
