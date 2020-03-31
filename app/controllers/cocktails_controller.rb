@@ -3,15 +3,16 @@ class CocktailsController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index]
 
   def index
+    @cocktails = Cocktail.all
     if params[:query].present?
-      @cocktails = []
+      @cocktails_results = []
       query = "%#{params[:query]}%"
       results = PgSearch.multisearch(query)
       results.each do |result|
-        @cocktails << result.searchable
+        @cocktails_results << result.searchable
       end
     else
-      @cocktails = Cocktail.all
+      @cocktails_results = Cocktail.all
     end
   end
 
