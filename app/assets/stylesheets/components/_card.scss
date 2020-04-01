@@ -22,6 +22,16 @@
     right: 15px;
     top: 15px;
   }
+  .likes {
+    position: absolute;
+    left: 15px;
+    top: 15px;
+    color: $orange;
+    p {
+      color: $orange;
+      font-size: 12px;
+    }
+  }
 }
 
 .cards {
