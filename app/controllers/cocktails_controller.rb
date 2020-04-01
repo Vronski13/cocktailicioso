@@ -16,6 +16,10 @@ class CocktailsController < ApplicationController
     end
   end
 
+  def my_cocktails
+    @cocktails = current_user.cocktails
+  end
+
   def show
     @dose = Dose.new
     @reviews = @cocktail.reviews
