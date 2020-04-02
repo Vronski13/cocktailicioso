@@ -6,9 +6,9 @@ Rails.application.routes.draw do
   root to: 'cocktails#index'
   devise_for :users
   resources :users, only: [:show] do
-    resources :cocktails, only: [:my_cocktails] do
+    resources :cocktails, only: [:my_cocktails, :edit, :update, :destroy, :create, :new] do
       collection do
-        get :my_cocktails
+        get :my_cocktails, :edit, :update, :destroy
       end
     end
   end
