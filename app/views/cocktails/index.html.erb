@@ -9,13 +9,8 @@
 
 <div class="container mt-4">
   <h3 class="mb-4"> Delicioso's choices for today: </h3>
-  <div class="cards">
-    <% @cocktails.sample(3).each do |cocktail| %>
-      <div class="card-cocktails" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= cl_image_path cocktail.photo.key, height: 1200, width: 1200, crop: :fill %>');">
-        <%=link_to cocktail.name, cocktail_path(cocktail)%>
-      </div>
-    <% end %>
-  </div>
+  <% @sample_cocktails = @cocktails.sample(3)%>
+  <%= render partial: 'shared/cocktails-card', object: @sample_cocktails, as: :cocktails%>
   <%= form_tag root_path, class: "d-flex my-4", method: :get do %>
     <%= text_field_tag :query,
       params[:query],
@@ -24,12 +19,5 @@
     %>
     <%= submit_tag "Search", class: "btn-gray" %>
   <% end %>
-
-  <div class="cards">
-    <% @cocktails_results.each do |cocktail| %>
-      <div class="card-cocktails" data-aos="fade-in" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= cl_image_path cocktail.photo.key, height: 1200, width: 1200, crop: :fill %>');">
-        <%=link_to cocktail.name, cocktail_path(cocktail)%>
-      </div>
-    <% end %>
-  </div>
+  <%= render partial: 'shared/cocktails-card', object: @cocktails_results, as: :cocktails%>
 </div>

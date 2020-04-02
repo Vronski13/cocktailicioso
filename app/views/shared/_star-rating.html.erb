@@ -1,0 +1,49 @@
+<% if rating == 0 %>
+  <div class="d-flex no-reviews">
+    <i class="far fa-star"></i>
+    <i class="far fa-star"></i>
+    <i class="far fa-star"></i>
+    <i class="far fa-star"></i>
+    <i class="far fa-star"></i>
+  </div>
+<% elsif rating == 1 %>
+  <div class="d-flex one-star">
+    <i class="fas fa-star"></i>
+    <i class="far fa-star"></i>
+    <i class="far fa-star"></i>
+    <i class="far fa-star"></i>
+    <i class="far fa-star"></i>
+  </div>
+<% elsif rating == 2 %>
+  <div class="d-flex two-star">
+    <i class="fas fa-star"></i>
+    <i class="fas fa-star"></i>
+    <i class="far fa-star"></i>
+    <i class="far fa-star"></i>
+    <i class="far fa-star"></i>
+  </div>
+<% elsif rating == 3 %>
+  <div class="d-flex three-star">
+    <i class="fas fa-star"></i>
+    <i class="fas fa-star"></i>
+    <i class="fas fa-star"></i>
+    <i class="far fa-star"></i>
+    <i class="far fa-star"></i>
+  </div>
+<% elsif rating == 4 %>
+  <div class="d-flex four-star">
+    <i class="fas fa-star"></i>
+    <i class="fas fa-star"></i>
+    <i class="fas fa-star"></i>
+    <i class="fas fa-star"></i>
+    <i class="far fa-star"></i>
+  </div>
+<% elsif rating == 5 %>
+  <div class="d-flex five-star">
+    <i class="fas fa-star"></i>
+    <i class="fas fa-star"></i>
+    <i class="fas fa-star"></i>
+    <i class="fas fa-star"></i>
+    <i class="fas fa-star"></i>
+  </div>
+<% end %>
