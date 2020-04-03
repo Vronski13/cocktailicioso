@@ -3,6 +3,19 @@
   <%= render partial: 'shared/image-slider'%>
     <div class="container-ingredients">
       <h2><%= @cocktail.name %></h2>
+        <div class="rating mb-4">
+          <% if @cocktail.reviews.empty? %>
+            <% @sum_rating = 0 %>
+            <%= render partial: 'shared/star-rating', object: @sum_rating, as: :rating%>
+          <% else %>
+            <% @sum_rating = 0 %>
+            <% @cocktail.reviews.each do |review| %>
+              <% @sum_rating += review.rating %>
+            <% end %>
+            <% @sum_rating = @sum_rating / @cocktail.reviews.length.to_i %>
+            <%= render partial: 'shared/star-rating', object: @sum_rating, as: :rating%>
+          <% end %>
+        </div>
         <div class="ingredients">
         <% @cocktail.doses.each do |d| %>
           <div id="description"><%= d.description %></div>

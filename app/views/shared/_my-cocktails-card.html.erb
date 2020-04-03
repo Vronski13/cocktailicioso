@@ -23,7 +23,7 @@
             <% cocktail.reviews.each do |review| %>
               <% @sum_rating += review.rating %>
             <% end %>
-            <% @sum_rating / cocktail.reviews.length.to_i %>
+            <% @sum_rating = @sum_rating / cocktail.reviews.length.to_i %>
             <%= render partial: 'shared/star-rating', object: @sum_rating, as: :rating%>
           <% end %>
         </div>
