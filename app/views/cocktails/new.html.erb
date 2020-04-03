@@ -3,21 +3,40 @@
     <h1>Create your favourite cocktail</h1>
   </div>
 </div>
-<div class="container">
-  <div class="d-flex flex-wrap justify-content-between">
-    <div class="container-cocktail">
-      <h4> First, give your cocktail a name </h4>
-      <%= simple_form_for [current_user, @cocktail] do |f| %>
-        <%= f.input :name %>
-        <%= f.input :photo, as: :file %>
-        <%= f.submit "add cocktail", class: "btn-orange" %>
+<div class="container-edit-cocktail">
+  <div class="container-cocktail preview">
+    <ul>
+      <% @cocktail.doses.each do |d| %>
+      <li>
+        <span style="color: #9818d6"><%= d.description %></span> <%= d.ingredient.name %>
+        <%= link_to dose_path(d),
+          method: :delete,
+          data: { confirm: "Are you sure?" } do %>
+          <i class="far fa-trash-alt"></i>
+        <% end %>
+      </li>
       <% end %>
-    </div>
-    <div class="container-inspiration">
-      <h4> Need some inspiration? </h4>
-      <% @cocktails.each do |cocktail| %>
-        <%= cocktail.name %> |
-      <% end %>
-    </div>
+    </ul>
   </div>
+  <div class="container-cocktail">
+    <h4> Name your cocktail</h4>
+    <%= simple_form_for [current_user, @cocktail] do |f| %>
+      <%= f.input :name %>
+      <%= f.input :photo, as: :file%>
+      <%= f.submit "Create cocktail", class: "btn-orange" %>
+    <% end %>
+  </div>
+  <% if @cocktail.id == nil %>
+    <div class="container-doses">
+    </div>
+  <% else %>
+    <div class="container-doses">
+      <h4>Add ingredients</h4>
+      <%= simple_form_for [current_user, @cocktail, @dose] do |f| %>
+        <%= f.association :ingredient, label_method: :name, value_method: :id, include_blank: false%>
+        <%= f.input :description, label: "Amount and description" %>
+        <%= f.submit "add dosis", class: "btn-orange" %>
+      <% end %>
+    </div>
+  <% end %>
 </div>
