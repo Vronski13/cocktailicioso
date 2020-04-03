@@ -1,20 +1,14 @@
-<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url('<%= cl_image_path @cocktail.photo.key, height: 1200, width: 1200, crop: :fill, position: :center; %>');">
-  <div class="container">
-    <h1><%= @cocktail.name %></h1>
-  </div>
-</div>
-
 <div class="container">
   <div class="container-show">
-    <div class="container-cocktail">
-      <h2>How to mix <%= @cocktail.name %></h2>
-      <ul>
+  <%= render partial: 'shared/image-slider'%>
+    <div class="container-ingredients">
+      <h2><%= @cocktail.name %></h2>
+        <div class="ingredients">
         <% @cocktail.doses.each do |d| %>
-        <li>
-          <span style="color: #9818d6"><%= d.description %></span> <%= d.ingredient.name %>
-        </li>
+          <div id="description"><%= d.description %></div>
+          <div id="ingredient"><%= d.ingredient.name %></div>
         <% end %>
-      </ul>
+      </div>
     </div>
     <div class="container-cocktail">
       <h2>Community Reviews </h2>
