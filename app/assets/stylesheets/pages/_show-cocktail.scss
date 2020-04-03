@@ -1,6 +1,6 @@
 .container-doses {
   max-width: 500px;
-  margin: 40px auto;
+  margin: 40px 0;
   padding: 20px;
   background-color: white;
 }
@@ -10,4 +10,10 @@
   margin: auto;
   padding: 20px;
   background-color: white;
+}
+
+.container-show {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 16px;
 }

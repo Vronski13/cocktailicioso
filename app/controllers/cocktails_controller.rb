@@ -1,5 +1,5 @@
 class CocktailsController < ApplicationController
-  before_action :find_cocktail, only: [:show, :cocktail_rating]
+  before_action :find_cocktail, only: [:show, :cocktail_rating, :edit]
   skip_before_action :authenticate_user!, only: [:index]
 
   def index
@@ -29,6 +29,17 @@ class CocktailsController < ApplicationController
   def new
     @cocktail = Cocktail.new
     @cocktails = Cocktail.all
+  end
+
+  def edit
+    @cocktails = Cocktail.all
+    @dose = Dose.new
+  end
+
+  def update
+  end
+
+  def destroy
   end
 
   def create

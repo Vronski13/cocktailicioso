@@ -5,35 +5,19 @@
 </div>
 
 <div class="container">
-  <div class="d-flex flex-wrap align-items-stretch">
-
-    <div class="container-doses">
+  <div class="container-show">
+    <div class="container-cocktail">
       <h2>How to mix <%= @cocktail.name %></h2>
       <ul>
         <% @cocktail.doses.each do |d| %>
         <li>
           <span style="color: #9818d6"><%= d.description %></span> <%= d.ingredient.name %>
-          <%= link_to dose_path(d),
-            method: :delete,
-            data: { confirm: "Are you sure?" } do %>
-            <i class="far fa-trash-alt"></i>
-          <% end %>
         </li>
         <% end %>
       </ul>
     </div>
-
-    <div class="container-doses">
-      <h2>Add incredients to your cocktail</h2>
-      <%= simple_form_for [@cocktail, @dose] do |f| %>
-        <%= f.association :ingredient, label_method: :name, value_method: :id, include_blank: false%>
-        <%= f.input :description, label: "Amount and description" %>
-        <%= f.submit "add dosis", class: "btn-orange" %>
-      <% end %>
-    </div>
-
-    <div class="container-reviews">
-      <h2>See what Cocktailicioso's community says about <%= @cocktail.name %> </h2>
+    <div class="container-cocktail">
+      <h2>Community Reviews </h2>
       <% if @cocktail.reviews.blank? %>
         <p> Leave the first comment!</p>
       <% else %>
@@ -47,6 +31,5 @@
         <%= f.submit "add review", class: "btn-orange" %>
       <% end %>
     </div>
-
   </div>
 </div>

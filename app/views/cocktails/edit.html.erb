@@ -1,0 +1,37 @@
+<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url('<%=cl_image_path 'banner_1_sl1col.jpg', width: 1400, height: 1000, crop: :fill %>');">
+  <div class="container">
+    <h1>Edit <%=@cocktail.name %></h1>
+  </div>
+</div>
+  <div class="container-edit-cocktail">
+    <div class="container-cocktail preview">
+      <ul>
+        <% @cocktail.doses.each do |d| %>
+        <li>
+          <span style="color: #9818d6"><%= d.description %></span> <%= d.ingredient.name %>
+          <%= link_to user_cocktail_dose_path(d),
+            method: :delete,
+            data: { confirm: "Are you sure?" } do %>
+            <i class="far fa-trash-alt"></i>
+          <% end %>
+        </li>
+        <% end %>
+      </ul>
+    </div>
+    <div class="container-cocktail">
+      <h4> Name your cocktail</h4>
+      <%= simple_form_for [@cocktail] do |f| %>
+        <%= f.input :name %>
+        <%= f.input :photo, as: :file %>
+        <%= f.submit "update cocktail", class: "btn-orange" %>
+      <% end %>
+    </div>
+    <div class="container-doses">
+      <h4>Add ingredients</h4>
+      <%= simple_form_for [@cocktail, @dose] do |f| %>
+        <%= f.association :ingredient, label_method: :name, value_method: :id, include_blank: false%>
+        <%= f.input :description, label: "Amount and description" %>
+        <%= f.submit "add dosis", class: "btn-orange" %>
+      <% end %>
+    </div>
+  </div>
