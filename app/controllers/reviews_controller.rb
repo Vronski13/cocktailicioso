@@ -20,10 +20,8 @@ private
     @cocktail = Cocktail.find(params[:cocktail_id])
   end
 
-  def dose_params
-    params.require(:review).permit(:rating, :cocktail_id, :user_id)
+  def review_params
+    params.require(:review).permit(:rating, :comment, :cocktail_id, :user_id)
   end
-
-end
 
 end

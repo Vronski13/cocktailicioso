@@ -2,7 +2,10 @@
   <div class="container-show">
   <%= render partial: 'shared/image-slider'%>
     <div class="container-ingredients">
-      <h2><%= @cocktail.name %></h2>
+      <div class="d-flex justify-content-between">
+        <h2><%= @cocktail.name %></h2>
+        <h2><i class="far fa-heart"></i></h2>
+      </div>
         <div class="rating mb-4">
           <% if @cocktail.reviews.empty? %>
             <% @sum_rating = 0 %>
@@ -23,20 +26,28 @@
         <% end %>
       </div>
     </div>
-    <div class="container-cocktail">
-      <h2>Community Reviews </h2>
-      <% if @cocktail.reviews.blank? %>
-        <p> Leave the first comment!</p>
-      <% else %>
-        <% @cocktail.reviews do |review| %>
-          <%= review.rating %>
-        <% end %>
+  </div>
+  <div class="container-reviews">
+    <h2>Community reviews </h2>
+    <% if @cocktail.reviews.blank? %>
+      <p> Leave the first comment!</p>
+    <% else %>
+      <% @cocktail.reviews.each do |review| %>
+        <div class="d-flex justify-content-between w-25 mb-0">
+          <%= render partial: 'shared/star-rating', object: review.rating, as: :rating%>
+          <p class="mb-0"><%= review.user.username %></p>
+        </div>
+        <p><%= review.comment %></p>
       <% end %>
-      <%= simple_form_for [@cocktail] do |f| %>
-        <%= f.association :user, label_method: :username, value_method: :id, include_blank: false%>
-
-        <%= f.submit "add review", class: "btn-orange" %>
-      <% end %>
-    </div>
+    <% end %>
+  </div>
+  <div class="container-reviews">
+    <h2>Leave a review!</h2>
+    <%= simple_form_for [@cocktail, @review] do |f| %>
+      <%= f.association :user, label_method: :username, value_method: :id, include_blank: false%>
+      <%= f.input :rating, label: "Give a rating", as: :integer %>
+      <%= f.input :comment, label: "Leave a comment" %>
+      <%= f.submit "add review", class: "btn-orange" %>
+    <% end %>
   </div>
 </div>

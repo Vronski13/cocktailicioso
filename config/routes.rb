@@ -1,8 +1,4 @@
 Rails.application.routes.draw do
-  get 'reviews/new'
-  get 'reviews/create'
-  get 'reviews/edit'
-  get 'reviews/index'
   root to: 'cocktails#index'
   devise_for :users
   resources :users, only: [:show] do
@@ -15,5 +11,8 @@ Rails.application.routes.draw do
   end
 
   resources :doses, only: [:destroy]
-  resources :cocktails, only: [:show, :destroy, :update]
+  resources :cocktails, only: [:show, :destroy, :update] do
+      resources :reviews, only: [:new, :create, :edit]
+  end
+  resources :reviews, only: [:destroy, :update]
 end
