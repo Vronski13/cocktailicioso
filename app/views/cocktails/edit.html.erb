@@ -22,7 +22,7 @@
       <h4> Name your cocktail</h4>
       <%= simple_form_for [@cocktail] do |f| %>
         <%= f.input :name %>
-        <%= f.input :photo, as: :file %>
+        <%= f.input :photo, as: :file%>
         <%= f.submit "update cocktail", class: "btn-orange" %>
       <% end %>
     </div>

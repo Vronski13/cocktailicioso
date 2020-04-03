@@ -1,5 +1,5 @@
 class CocktailsController < ApplicationController
-  before_action :find_cocktail, only: [:show, :cocktail_rating, :edit]
+  before_action :find_cocktail, only: [:show, :cocktail_rating, :edit, :update]
   skip_before_action :authenticate_user!, only: [:index]
 
   def index
@@ -37,6 +37,8 @@ class CocktailsController < ApplicationController
   end
 
   def update
+    @cocktail.update(cocktail_params)
+    redirect_to edit_user_cocktail_path(current_user, @cocktail)
   end
 
   def destroy
