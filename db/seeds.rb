@@ -17,6 +17,13 @@ cocktail['drinks'].each do |ingredient|
   Ingredient.create(name: ingredient['strIngredient1'])
 end
 
+puts "Create Admin"
+admin = User.new
+admin.email = "verena.mller@gmail.com"
+admin.username = "Vronski"
+admin.password = "123456789"
+admin.save
+
 puts "Creating Long Island Ice Tea"
 file = URI.open('https://images.unsplash.com/photo-1510626176961-4b57d4fbad03?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1234&q=80')
 ice = Cocktail.new(name: "Long Island Iced Tea", user_id: 1)
@@ -46,5 +53,12 @@ file = URI.open('https://images.unsplash.com/photo-1571045741139-afb07c44b2c0?ix
 bloody = Cocktail.new(name: "Bloody Mary", user_id: 1)
 bloody.photo.attach(io: file, filename: '6.png', content_type: 'image/png')
 bloody.save
+
+puts "Creating some fake reviews"
+10.times do
+  @rating = rand(1..5)
+  @cocktail_id = rand(1..6)
+  Review.create(rating: @rating, user_id: 1, cocktail_id: @cocktail_id)
+end
 
 puts "Finished"

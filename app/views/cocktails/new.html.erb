@@ -7,7 +7,7 @@
   <div class="d-flex flex-wrap justify-content-between">
     <div class="container-cocktail">
       <h4> First, give your cocktail a name </h4>
-      <%= simple_form_for [@cocktail] do |f| %>
+      <%= simple_form_for [current_user, @cocktail] do |f| %>
         <%= f.input :name %>
         <%= f.input :photo, as: :file %>
         <%= f.submit "add cocktail", class: "btn-orange" %>
