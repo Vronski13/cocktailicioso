@@ -11,7 +11,7 @@ class DosesController < ApplicationController
     if @dose.save
       redirect_to edit_user_cocktail_path(current_user, @cocktail)
     else
-      render :new
+      redirect_to edit_user_cocktail_path(current_user, @cocktail)
     end
   end
 
@@ -29,7 +29,7 @@ private
   end
 
   def dose_params
-    params.require(:dose).permit(:description, :ingredient_id)
+    params.require(:dose).permit(:description, :ingredient_id, :cocktail_id)
   end
 
 end
